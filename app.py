@@ -297,7 +297,7 @@ def call_tutor(client, history, state, prev_state=None):
     elif messages[-1]["role"] == "user":
         messages[-1]["content"] = state_block + messages[-1]["content"]
     response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-5",
         max_tokens=300,
         system=TUTOR_SYSTEM,
         messages=messages
