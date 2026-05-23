@@ -72,7 +72,7 @@ Una condición está cumplida si el alumno ha aportado contenido concreto, aunqu
 
 Definición de cada ítem:
 
-via_definida: true si el alumno ha expresado con claridad si quiere ir a FP, a Bachillerato, o si todavía no lo sabe. Ejemplos suficientes: "quiero hacer FP", "prefiero Bachillerato", "no tengo claro si FP o Bachillerato". No es suficiente: una respuesta evasiva o ambigua sin posición.
+via_definida: true SOLO si el alumno ha expresado en primera persona una decisión o preferencia clara y propia sobre FP o Bachillerato. Ejemplos suficientes: "quiero hacer FP", "prefiero Bachillerato", "creo que me voy a FP", "lo tengo claro, Bachillerato". NO es suficiente: mencionar lo que quieren sus padres ("mis padres quieren que haga Bachillerato"), expresar duda ("no sé", "no lo tengo claro"), o rechazar una opción sin afirmar la otra ("no me veo estudiando dos años más"). Una respuesta que solo descarta una opción sin elegir la otra es false. Una respuesta que menciona a terceros sin posición propia del alumno es false.
 
 gusto_presente: true si el alumno ha mencionado al menos una asignatura, actividad o momento del insti que le gusta o en el que se siente bien. Ejemplos suficientes: "me gusta mucho Biología", "en Tecnología se me pasa el tiempo volando", "cuando hacemos prácticas estoy más a gusto". No es suficiente: decir que le gusta "el recreo" o algo no académico sin más contexto.
 
