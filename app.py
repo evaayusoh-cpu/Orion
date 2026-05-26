@@ -74,6 +74,8 @@ Definición de cada ítem:
 
 via_definida: true SOLO si el alumno ha expresado en primera persona una decisión o preferencia clara y propia sobre FP o Bachillerato. Ejemplos suficientes: "quiero hacer FP", "prefiero Bachillerato", "creo que me voy a FP", "lo tengo claro, Bachillerato". NO es suficiente: mencionar lo que quieren sus padres ("mis padres quieren que haga Bachillerato"), expresar duda ("no sé", "no lo tengo claro"), o rechazar una opción sin afirmar la otra ("no me veo estudiando dos años más"). Una respuesta que solo descarta una opción sin elegir la otra es false. Una respuesta que menciona a terceros sin posición propia del alumno es false.
 
+ocio_intereses: true si el alumno ha mencionado al menos una actividad, afición o interés concreto fuera del insti. Ejemplos suficientes: "juego a videojuegos de estrategia", "me gusta mucho el fútbol", "paso mucho tiempo con los coches", "salgo al monte con mi padre", "cocino bastante en casa", "toco la guitarra". No es suficiente: decir "quedo con amigos" sin mencionar qué hacen, o "hago cosas" sin concretar.
+
 gusto_presente: true si el alumno ha mencionado al menos una asignatura, actividad o momento del insti que le gusta o en el que se siente bien. Ejemplos suficientes: "me gusta mucho Biología", "en Tecnología se me pasa el tiempo volando", "cuando hacemos prácticas estoy más a gusto". No es suficiente: decir que le gusta "el recreo" o algo no académico sin más contexto.
 
 disgusto_presente: true si el alumno ha mencionado al menos una asignatura o tipo de tarea que le resulta pesada o que menos le gusta. Ejemplos suficientes: "Historia me cuesta mucho", "no aguanto estar copiando apuntes", "las memorias largas no son lo mío". No es suficiente: decir que "todo" le da igual sin concretar.
@@ -82,7 +84,7 @@ modo_trabajo: true si el alumno ha expresado cómo prefiere trabajar o aprender:
 
 valor_futuro: true si el alumno ha expresado qué quiere que su trabajo signifique o aporte, aunque sea de forma vaga. Ejemplos suficientes: "quiero ayudar a la gente", "me gustaría ganar bien", "quiero hacer algo creativo", "prefiero tener un trabajo estable". No es suficiente: decir "no sé" o "lo que sea" sin ninguna referencia a lo que le importa.
 
-perfil_emergente: true si el tutor ya tiene suficiente información de las fases anteriores para construir una imagen coherente del alumno y conectarla con una familia o rama. Este ítem lo activas tú cuando los cuatro anteriores son true y las respuestas del alumno ofrecen un perfil consistente (no contradictorio). Si las respuestas son coherentes entre sí, ponlo en true. Si son contradictorias o insuficientes, déjalo en false aunque los cuatro anteriores sean true.
+perfil_emergente: true si el tutor ya tiene suficiente información de las fases anteriores para construir una imagen coherente del alumno y conectarla con una familia o rama. Este ítem lo activas tú cuando los cinco anteriores son true y las respuestas del alumno ofrecen un perfil consistente (no contradictorio). Si las respuestas son coherentes entre sí, ponlo en true. Si son contradictorias o insuficientes, déjalo en false aunque los cuatro anteriores sean true.
 
 sintesis_validada: true si el tutor ha presentado una síntesis al alumno y el alumno la ha confirmado, matizado o corregido de forma activa. Ejemplos suficientes: "sí, eso me representa bastante", "más o menos, aunque también me gusta...", "no del todo, porque...". No es suficiente: un "sí" o "vale" sin ningún contenido.
 
@@ -92,6 +94,7 @@ Responde ÚNICAMENTE con el JSON, sin texto adicional, sin explicaciones, sin fo
 
 {
   "via_definida": false,
+  "ocio_intereses": false,
   "gusto_presente": false,
   "disgusto_presente": false,
   "modo_trabajo": false,
@@ -151,23 +154,32 @@ Espera la respuesta y adapta el arco según lo que diga:
 - Si no sabe: recorre el arco completo incluyendo la bifurcación en FASE 3.
 
 FASE 1 — ANCLAJE EN EL PRESENTE
-Ítems a cubrir: gusto_presente, disgusto_presente
+Ítems a cubrir: ocio_intereses, gusto_presente, disgusto_presente
 
-Objetivo: que el alumno hable de su vida en el insti sin presión. Empieza por lo que le gusta.
+Objetivo: construir un perfil completo del alumno combinando lo que hace fuera del insti y lo que le pasa dentro. Las tres preguntas son obligatorias para todos los alumnos, en este orden.
 
-Pregunta de apertura:
-"¿Hay alguna asignatura o actividad del insti en la que el tiempo se te pasa sin que te des cuenta?"
+Pregunta 1 — tiempo libre (SIEMPRE la primera):
+"Fuera del insti, ¿hay algo que hagas y que se te pase el tiempo volando?"
 
-Si la respuesta es vaga ("no sé", "ninguna"):
-"¿Y fuera del insti, hay algo que hagas y que se te pase el tiempo volando?"
+Si la respuesta es vaga ("no sé", "nada especial", "quedo con amigos"):
+"¿Y cuando estás en casa sin plan fijo, qué acabas haciendo?"
 
-Si menciona algo: construye sobre ello y ve a lo que menos le gusta.
+Si sigue sin concretar:
+"¿Hay algo que te enganche aunque sea un rato, coches, deporte, música, videojuegos, cocinar, lo que sea?"
+
+Pregunta 2 — lo que le gusta en el insti:
+"¿Y en el insti, hay alguna asignatura o actividad en la que el tiempo se te pase sin que te des cuenta?"
+
+Si la respuesta es vaga:
+"¿Hay algún momento del insti en el que estés más a gusto, aunque no sea una asignatura concreta?"
+
+Pregunta 3 — lo que menos lleva:
 "¿Y lo que más se te hace cuesta arriba, o lo que menos llevas del insti?"
 
 Si da una respuesta muy genérica ("todo"):
 "¿Hay algún tipo de tarea concreta que se te haga especialmente pesada, aunque la asignatura no te parezca mal?"
 
-No avances a FASE 2 hasta que gusto_presente y disgusto_presente sean true.
+No avances a FASE 2 hasta que ocio_intereses, gusto_presente y disgusto_presente sean true.
 
 FASE 2 — CÓMO TRABAJA Y APRENDE
 Ítem a cubrir: modo_trabajo
@@ -233,6 +245,7 @@ No añades nada más."""
 
 DEFAULT_STATE = {
     "via_definida": False,
+    "ocio_intereses": False,
     "gusto_presente": False,
     "disgusto_presente": False,
     "modo_trabajo": False,
@@ -243,6 +256,7 @@ DEFAULT_STATE = {
 
 ITEM_LABELS = {
     "via_definida":      "Vía definida (FP / Bachillerato / abierta)",
+    "ocio_intereses":    "Intereses y ocio fuera del insti",
     "gusto_presente":    "Lo que le gusta en el insti",
     "disgusto_presente": "Lo que menos lleva en el insti",
     "modo_trabajo":      "Cómo aprende y trabaja",
@@ -252,7 +266,7 @@ ITEM_LABELS = {
 }
 
 FASES = {
-    "Fase 1 — Presente": ["gusto_presente", "disgusto_presente"],
+    "Fase 1 — Presente": ["ocio_intereses", "gusto_presente", "disgusto_presente"],
     "Fase 2 — Cómo trabaja": ["modo_trabajo"],
     "Fase 3 — Qué le importa": ["via_definida", "valor_futuro"],
     "Fase 4 — Síntesis": ["perfil_emergente", "sintesis_validada"],
