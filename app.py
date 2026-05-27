@@ -82,9 +82,23 @@ disgusto_presente: true si el alumno ha mencionado al menos una asignatura o tip
 
 modo_trabajo: true si el alumno ha expresado cómo prefiere trabajar o aprender: solo o en grupo, con instrucciones o con libertad, de forma práctica o teórica. Ejemplos suficientes: "prefiero hacer cosas con las manos", "me va mejor cuando alguien me explica y luego yo lo hago", "en grupo me desconcentro". No es suficiente: decir "depende" sin especificar nada.
 
+dim_gente: true si el alumno ha expresado si prefiere trabajar con personas (trato directo, cara al público, ayudar, enseñar) o prefiere trabajar sin trato directo (entre bastidores, con objetos, con datos, con máquinas). Ejemplos suficientes: "me gusta ayudar a la gente", "prefiero no tratar con clientes", "me tira más trabajar con ordenadores que con personas", "me gusta explicar cosas a otros". No es suficiente: decir "depende" sin concretar.
+
+dim_entorno: true si el alumno ha expresado preferencia por trabajar en exterior o en interior/espacio cerrado. Ejemplos suficientes: "me gusta estar fuera", "prefiero estar en una oficina o taller", "no me veo todo el día sentado", "me agobia estar cerrado". No es suficiente: no haber mencionado nada sobre el entorno físico de trabajo.
+
+dim_variedad: true si el alumno ha expresado si prefiere rutina y estabilidad o variedad y que cada día sea distinto. Ejemplos suficientes: "me aburre hacer siempre lo mismo", "prefiero saber lo que me voy a encontrar", "me gusta la variedad", "necesito que haya cambios". No es suficiente: decir "depende" sin concretar.
+
+dim_crear: true si el alumno ha expresado si prefiere crear, diseñar o inventar cosas, o si prefiere ejecutar procesos definidos y aplicar lo que ya sabe. Ejemplos suficientes: "me gusta inventarme cosas", "prefiero que me digan cómo y yo lo hago", "me gusta diseñar", "prefiero seguir pasos claros". No es suficiente: no haber expresado ninguna preferencia sobre esto.
+
+dim_impacto: true si el alumno ha expresado si le motiva más el impacto en otras personas (ayudar, enseñar, cuidar) o el resultado tangible del trabajo (construir algo, que funcione, ver el producto terminado). Ejemplos suficientes: "quiero ayudar a la gente", "lo que me gusta es ver que algo funciona", "me importa más el resultado que si alguien lo nota", "me llena saber que he ayudado a alguien". No es suficiente: una respuesta vaga sobre el trabajo en general.
+
+dim_precision: true si el alumno ha expresado si le gusta trabajar con detalle y exactitud, o si prefiere situaciones donde hay que adaptarse e improvisar. Ejemplos suficientes: "me gusta hacer las cosas bien hechas y con detalle", "prefiero improvisar según lo que pase", "me estresa cuando algo no sale exacto", "me aburre repetir siempre lo mismo con precisión". No es suficiente: no haber mencionado nada sobre esto.
+
+dim_visibilidad: true si el alumno ha expresado si le gusta tener protagonismo, visibilidad o ser el centro (cara al público, presentar, liderar) o si prefiere que su trabajo hable por sí solo sin estar en primer plano. Ejemplos suficientes: "me gusta que se note lo que hago", "prefiero pasar desapercibido", "no me importa estar delante de gente", "me agobia ser el centro de atención". No es suficiente: no haber expresado ninguna preferencia sobre visibilidad.
+
 valor_futuro: true si el alumno ha expresado qué quiere que su trabajo signifique o aporte, aunque sea de forma vaga. Ejemplos suficientes: "quiero ayudar a la gente", "me gustaría ganar bien", "quiero hacer algo creativo", "prefiero tener un trabajo estable". No es suficiente: decir "no sé" o "lo que sea" sin ninguna referencia a lo que le importa.
 
-perfil_emergente: true si el tutor ya tiene suficiente información de las fases anteriores para construir una imagen coherente del alumno y conectarla con una familia o rama. Este ítem lo activas tú cuando los cinco anteriores son true y las respuestas del alumno ofrecen un perfil consistente (no contradictorio). Si las respuestas son coherentes entre sí, ponlo en true. Si son contradictorias o insuficientes, déjalo en false aunque los cuatro anteriores sean true.
+perfil_emergente: true si el tutor ya tiene suficiente información de las fases anteriores para construir una imagen coherente del alumno y conectarla con una familia o rama. Este ítem lo activas tú cuando via_definida, ocio_intereses, gusto_presente, disgusto_presente, modo_trabajo, dim_gente, dim_entorno, dim_variedad, dim_crear, dim_impacto, dim_precision, dim_visibilidad y valor_futuro son todos true y las respuestas del alumno ofrecen un perfil consistente (no contradictorio). Si las respuestas son coherentes entre sí, ponlo en true. Si son contradictorias o insuficientes, déjalo en false aunque los cuatro anteriores sean true.
 
 sintesis_validada: true si el tutor ha presentado una síntesis al alumno y el alumno la ha confirmado, matizado o corregido de forma activa. Ejemplos suficientes: "sí, eso me representa bastante", "más o menos, aunque también me gusta...", "no del todo, porque...". No es suficiente: un "sí" o "vale" sin ningún contenido.
 
@@ -98,6 +112,13 @@ Responde ÚNICAMENTE con el JSON, sin texto adicional, sin explicaciones, sin fo
   "gusto_presente": false,
   "disgusto_presente": false,
   "modo_trabajo": false,
+  "dim_gente": false,
+  "dim_entorno": false,
+  "dim_variedad": false,
+  "dim_crear": false,
+  "dim_impacto": false,
+  "dim_precision": false,
+  "dim_visibilidad": false,
   "valor_futuro": false,
   "perfil_emergente": false,
   "sintesis_validada": false
@@ -181,18 +202,48 @@ Si da una respuesta muy genérica ("todo"):
 
 No avances a FASE 2 hasta que ocio_intereses, gusto_presente y disgusto_presente sean true.
 
-FASE 2 — CÓMO TRABAJA Y APRENDE
-Ítem a cubrir: modo_trabajo
+FASE 2 — CÓMO TRABAJA, APRENDE Y ES
+Ítems a cubrir: modo_trabajo, dim_gente, dim_entorno, dim_variedad, dim_crear, dim_impacto, dim_precision, dim_visibilidad
 
-Objetivo: identificar si prefiere trabajar solo o en grupo, con instrucciones claras o con libertad, de forma práctica o teórica. Todo a través de situaciones concretas, nunca preguntado de forma abstracta.
+Objetivo: construir un perfil de personalidad laboral completo a través de preguntas concretas y situacionales. Nunca preguntes de forma abstracta ("¿eres creativo?"). Ancla siempre en situaciones reales o imaginarias cercanas al alumno. Usa lo que ya sabes de Fase 1 para formular preguntas que encajen con su perfil — si mencionó la montaña, úsala; si mencionó videojuegos, úsalos.
 
-Preguntas posibles (usa una por turno, empieza por la más cercana a lo que ha dicho en Fase 1):
+Una pregunta por turno. Cubre todos los ítems antes de avanzar, pero no en orden fijo — elige el orden que fluya mejor según lo que el alumno va diciendo.
+
+Preguntas para cada dimensión (elige la más natural según el contexto):
+
+modo_trabajo:
 "Cuando tienes que hacer un trabajo, ¿prefieres que te digan exactamente lo que hay que hacer, o que te dejen elegir cómo hacerlo?"
-"¿Te va mejor trabajar solo o con otras personas?"
-"Si en clase puedes elegir entre explicar algo en voz alta o hacer una práctica con las manos, ¿con cuál te quedas?"
-"¿Cómo aprendes mejor: leyendo y tomando apuntes, o haciendo cosas y viendo cómo funcionan?"
+"¿Aprendes mejor leyendo y escuchando explicaciones, o haciendo cosas directamente y viendo cómo funcionan?"
 
-No avances a FASE 3 hasta que modo_trabajo sea true.
+dim_gente:
+"¿Te ves más en un trabajo donde tratas con gente todo el día, o donde trabajas más a tu aire sin tanto trato directo?"
+"¿Te tira más ayudar o enseñar a otras personas, o prefieres centrarte en hacer bien tu trabajo sin que dependa tanto de otros?"
+
+dim_entorno:
+"¿Te ves mejor trabajando fuera, moviéndote, o en un sitio fijo como una oficina o un taller?"
+"¿Te agobia estar todo el día en el mismo sitio cerrado, o te da igual el entorno si el trabajo es bueno?"
+
+dim_variedad:
+"¿Prefieres que cada día sea distinto y haya imprevistos, o que sepas más o menos lo que te vas a encontrar?"
+"¿Te aburres si llevas tiempo haciendo lo mismo, o la rutina no te molesta si dominas lo que haces?"
+
+dim_crear:
+"Si tienes que hacer algo, ¿prefieres que te den un proceso claro a seguir, o que te dejen inventarte cómo hacerlo?"
+"¿Te llama más diseñar o crear cosas desde cero, o aplicar bien lo que ya sabes hacer?"
+
+dim_impacto:
+"¿Qué te llena más: saber que has ayudado a alguien, o ver que algo que has hecho funciona bien aunque nadie lo note especialmente?"
+"¿Te motiva más el resultado tangible — algo construido, arreglado, terminado — o saber que has marcado una diferencia en alguien?"
+
+dim_precision:
+"¿Te gusta trabajar con detalle y que las cosas salgan exactas, o prefieres adaptarte según lo que vaya pasando?"
+"¿Te estresa cuando algo no sale como tenías planeado, o eso forma parte de lo que te gusta?"
+
+dim_visibilidad:
+"¿Te importa que la gente vea y reconozca lo que haces, o prefieres que tu trabajo hable por sí solo sin necesidad de estar en primer plano?"
+"¿Te incomoda ser el centro de atención, o no te importa e incluso te gusta?"
+
+No avances a FASE 3 hasta que los ocho ítems sean true.
 
 FASE 3 — QUÉ LE IMPORTA
 Ítems a cubrir: valor_futuro, y via_definida si todavía está en false
@@ -249,6 +300,13 @@ DEFAULT_STATE = {
     "gusto_presente": False,
     "disgusto_presente": False,
     "modo_trabajo": False,
+    "dim_gente": False,
+    "dim_entorno": False,
+    "dim_variedad": False,
+    "dim_crear": False,
+    "dim_impacto": False,
+    "dim_precision": False,
+    "dim_visibilidad": False,
     "valor_futuro": False,
     "perfil_emergente": False,
     "sintesis_validada": False,
@@ -260,6 +318,13 @@ ITEM_LABELS = {
     "gusto_presente":    "Lo que le gusta en el insti",
     "disgusto_presente": "Lo que menos lleva en el insti",
     "modo_trabajo":      "Cómo aprende y trabaja",
+    "dim_gente":         "Con personas o sin trato directo",
+    "dim_entorno":       "Exterior o interior",
+    "dim_variedad":      "Rutina o variedad",
+    "dim_crear":         "Crear o ejecutar",
+    "dim_impacto":       "Impacto en personas o resultado tangible",
+    "dim_precision":     "Precisión o improvisación",
+    "dim_visibilidad":   "Visibilidad o anonimato",
     "valor_futuro":      "Qué quiere que signifique su trabajo",
     "perfil_emergente":  "Perfil suficiente para orientar",
     "sintesis_validada": "Síntesis validada por el alumno",
@@ -267,7 +332,7 @@ ITEM_LABELS = {
 
 FASES = {
     "Fase 1 — Presente": ["ocio_intereses", "gusto_presente", "disgusto_presente"],
-    "Fase 2 — Cómo trabaja": ["modo_trabajo"],
+    "Fase 2 — Perfil de trabajo": ["modo_trabajo", "dim_gente", "dim_entorno", "dim_variedad", "dim_crear", "dim_impacto", "dim_precision", "dim_visibilidad"],
     "Fase 3 — Qué le importa": ["via_definida", "valor_futuro"],
     "Fase 4 — Síntesis": ["perfil_emergente", "sintesis_validada"],
 }
